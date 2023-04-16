@@ -27,6 +27,9 @@ import {
     $isListNode,
     ListNode
 } from "@lexical/list";
+import {
+    INSERT_COLLAPSIBLE_COMMAND,
+} from "./CollapsiblePlugin";
 import { createPortal } from "react-dom";
 import {
     $createHeadingNode,
@@ -684,10 +687,19 @@ export default function ToolbarPlugin() {
                         onClick={() => {
                             editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "justify");
                         }}
-                        className="toolbar-item"
+                        className="toolbar-item spaced"
                         aria-label="Justify Align"
                     >
                         <i className="format justify-align" />
+                    </button>{" "}
+                    <button
+                        onClick={() => {
+                            editor.dispatchCommand(INSERT_COLLAPSIBLE_COMMAND, undefined);
+                        }}
+                        className="toolbar-item"
+                        aria-label="Insert Notecard"
+                    >
+                        <i className="format insert-notecard" />
                     </button>{" "}
                 </>
             )}

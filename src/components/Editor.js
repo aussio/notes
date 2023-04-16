@@ -16,6 +16,10 @@ import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
 import { TRANSFORMERS } from "@lexical/markdown";
+import CollapsiblePlugin from './plugins/CollapsiblePlugin';
+import { CollapsibleContainerNode } from './plugins/CollapsiblePlugin/CollapsibleContainerNode';
+import { CollapsibleContentNode } from './plugins/CollapsiblePlugin/CollapsibleContentNode';
+import { CollapsibleTitleNode } from './plugins/CollapsiblePlugin/CollapsibleTitleNode';
 
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
@@ -43,7 +47,10 @@ const editorConfig = {
     TableCellNode,
     TableRowNode,
     AutoLinkNode,
-    LinkNode
+    LinkNode,
+    CollapsibleContainerNode,
+    CollapsibleContentNode,
+    CollapsibleTitleNode,
   ]
 };
 
@@ -66,6 +73,7 @@ export default function Editor() {
           <LinkPlugin />
           <AutoLinkPlugin />
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+          <CollapsiblePlugin />
         </div>
       </div>
     </LexicalComposer>
