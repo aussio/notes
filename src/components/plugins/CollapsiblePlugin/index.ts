@@ -45,9 +45,23 @@ import {
 export const INSERT_COLLAPSIBLE_COMMAND = createCommand<void>();
 export const TOGGLE_COLLAPSIBLE_COMMAND = createCommand<NodeKey>();
 
+// * How React plugins work: https://lexical.dev/docs/react/create_plugin
+// *
+// * This plugin extends Lexical via 3 Node Transforms:
+// *   - CollapsibleContentNode > ElementNode
+// *   - CollapsibleTitleNode > ElementNode
+// *   - CollapsibleContainerNode > ElementNode
+// *
+// * Comments says: 
+// * If not "Container > Title + Content" it'll unwrap nodes
+// * and convert it back to regular content.
+// *
+// *
 export default function CollapsiblePlugin(): JSX.Element | null {
+    // * Get the underlying editor
     const [editor] = useLexicalComposerContext();
 
+    // * The entire plugin is a useEffect that changes on `editor`
     useEffect(() => {
         if (
             !editor.hasNodes([
